@@ -1,0 +1,6 @@
+psutil
+rich
+reportlab
+jinja2
+pywin32
+wmi

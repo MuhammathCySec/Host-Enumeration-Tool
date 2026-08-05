@@ -168,7 +168,7 @@ Reports include:
 ## Clone Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/Host-Enumeration-Tool.git
+git clone https://github.com/MuhammathCySec/Host-Enumeration-Tool.git
 
 cd Host-Enumeration-Tool
 Install Dependencies

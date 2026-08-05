@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: het
+Version: 4.0
+Summary: Host Enumeration Tool - Windows Security Assessment Tool
+License-File: LICENSE
+Requires-Dist: psutil
+Requires-Dist: jinja2
+Requires-Dist: reportlab
+Dynamic: license-file

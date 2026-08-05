@@ -1,0 +1,21 @@
+[build-system]
+requires = [
+    "setuptools>=64",
+    "wheel"
+]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "het"
+version = "4.0"
+description = "Host Enumeration Tool - Windows Security Assessment Tool"
+dependencies = [
+    "psutil",
+    "jinja2",
+    "reportlab"
+]
+
+
+[project.scripts]
+het = "het_cli:main_cli"

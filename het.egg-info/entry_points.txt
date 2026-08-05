@@ -1,0 +1,2 @@
+[console_scripts]
+het = het_cli:main_cli

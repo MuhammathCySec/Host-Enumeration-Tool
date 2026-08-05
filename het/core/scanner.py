@@ -14,18 +14,21 @@ from het.security import ioc
 from het.analysis import risk_score
 from het.analysis import recommendations
 
-from het.reports import json_report
 from het.reports import html_report
-from het.reports import pdf_report
+from het.reports import report_manager
 
 
-def main():
+
+def run_scan():
+
 
     print("""
 ====================================
-        HET v2.5
+        HET v4.5
+
  Host Enumeration Tool
-    Windows Edition
+
+ Windows Edition
 ====================================
 """)
 
@@ -33,85 +36,141 @@ def main():
     report = {}
 
 
+
     print("[+] Host Information")
     report["host"] = host.collect()
+
 
 
     print("[+] Hardware Information")
     report["hardware"] = hardware.collect()
 
 
+
     print("[+] Network Information")
     report["network"] = network.collect()
+
 
 
     print("[+] User Audit")
     report["users"] = users.collect()
 
 
+
     print("[+] Process Enumeration")
     report["processes"] = processes.collect()
+
 
 
     print("[+] Service Enumeration")
     report["services"] = services.collect()
 
 
+
     print("[+] Startup Programs")
     report["startup"] = startup.collect()
+
 
 
     print("[+] Firewall Audit")
     report["firewall"] = firewall.collect()
 
 
+
     print("[+] Defender Check")
     report["defender"] = defender.collect()
+
 
 
     print("[+] Update Check")
     report["updates"] = updates.collect()
 
 
+
     print("[+] IOC Scan")
     report["ioc"] = ioc.collect()
 
 
+
+
     print("[+] Running Security Analysis")
 
-    analysis = risk_score.calculate(report)
+
+
+    analysis = risk_score.calculate(
+        report
+    )
+
 
     report["security_analysis"] = analysis
 
 
-    print("[+] Creating Recommendations")
+
 
     report["recommendations"] = (
-        recommendations.generate(analysis)
+        recommendations.generate(
+            analysis
+        )
     )
 
 
-    print("[+] Creating JSON Report")
 
-    json_report.generate(report)
 
-    print("[+] Creating HTML Report")
+    # ==============================
+    # HTML REPORT GENERATION
+    # ==============================
 
-    html_report.generate(report)
 
-    print("[+] Creating PDF Report")
+    print(
+        "[+] Creating Report Folder"
+    )
 
-    pdf_report.generate(report)
+
+
+    report_folder = (
+        report_manager.create_report_folder()
+    )
+
+
+
+    print(
+        "[+] Creating HTML Report"
+    )
+
+
+
+    report_path = html_report.generate(
+        report,
+        report_folder
+    )
+
+
+
+    print(
+    f"""
+
+====================================
+HET Report Generated Successfully
+
+Report Location:
+
+{report_path}
+
+====================================
+
+"""
+    )
+
 
 
     print("""
 ====================================
 HET Scan Completed Successfully
-
-Report saved inside reports folder
 ====================================
-""")
+
+"""
+    )
 
 
-if __name__ == "__main__":
-    main()
+
+    return report

@@ -1,6 +1,6 @@
 # HET - Host Enumeration Tool
 
-![HET Banner](docs/screenshots/het-banner.png)
+![HET Banner](screenshots/het-banner.png)
 
 ## 🛡️ Project Introduction
 
